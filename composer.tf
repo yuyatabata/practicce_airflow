@@ -1,12 +1,12 @@
 provider "google-beta" {
-    credentials = "$(file("${var.credential.data}"))"
-    project = "${lookup(var.project_name, "${terraform.workspace}")}"
+    credentials = "${file("${var.credential.data}")}"
+    project = "${var.project_id}"
     region = "asia-northeast1"
 }
 
 resource "google_composer_environment" "composer-environment" {
     name = "sample"
-    project = "${lookup(var.project_name, "${terraform.workspace}")}"
+    project = "${var.project_id}"
     region = "asia-northeast1"
     config {
         node_count = 3
